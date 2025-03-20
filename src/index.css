@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Space Grotesk", sans-serif;
+  background: #110e0e;
+  color: #f3f4f6;
+}
+
+@layer utilities {
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .animate-blink {
+    animation: blink 0.8s step-end infinite;
+  }
+
+  @keyframes loading {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(250%);
+    }
+  }
+
+  .animate-loading-bar {
+    animation: loading 0.8s ease infinite;
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.connect-with-me {
+  background: linear-gradient(to right, #2c3e50, #3498db); /* Same gradient */
+  /* ... other styles ... */
+}
+.loading-screen {
+  height: 100vh; /* Ensures it takes the full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body {
+  overflow: hidden;
+}
+
+/* Once loading is complete, reset it */
+body.loaded {
+  overflow: auto;
+}
