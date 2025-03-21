@@ -15,7 +15,7 @@ export const Home = () => {
           {/* Profile Picture Above Name */}
           <div className="flex flex-col items-center mb-6">
             <img
-              src="/DSC_0463.JPG" // Update your profile pic path herepedrotech-portfolio\public\DSC_0463.JPG
+              src="/mukunda_portfolio/DSC_0463.JPG" // Update your profile pic path herepedrotech-portfolio\public\DSC_0463.JPG
               alt="Mukunda Krishna Ramisetti"
               className="w-65 h-65 object-cover rounded-full mb-6" // Change to object-contain to avoid cropping
             />
