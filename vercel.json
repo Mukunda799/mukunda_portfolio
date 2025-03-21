@@ -3,3 +3,4 @@
       { "source": "/mukunda_portfolio/(.*)", "destination": "/mukunda_portfolio/index.html" }
     ]
   }
+  
