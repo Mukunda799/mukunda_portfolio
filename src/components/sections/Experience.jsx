@@ -8,7 +8,7 @@ export const ExperienceSection = () => {
   const experiences = [
     {
       company: "Tek Leaders INC",
-      logo: "/portfolio_mukunda/TekLeaders_logo.jpg", // Replace with actual logo path
+      logo: "/mukunda_portfolio/TekLeaders_logo.jpg", // Replace with actual logo path
       role: "Java Developer",
       period: "Jan 2024 - June 2024",
       description:
@@ -22,7 +22,7 @@ export const ExperienceSection = () => {
     },
     {
       company: "LTIMindtree",
-      logo: "/portfolio_mukunda/LTIMindtree_logo.jpg", // Replace with actual logo path
+      logo: "/mukunda_portfolio/LTIMindtree_logo.jpg", // Replace with actual logo path
       role: "Full Stack Developer",
       period: "June 2021 - Jan 2023",
       description:

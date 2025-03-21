@@ -15,7 +15,7 @@ export const Home = () => {
           {/* Profile Picture Above Name */}
           <div className="flex flex-col items-center mb-6">
             <img
-              src="/portfolio_mukunda/public/DSC_0463.JPG" // Update your profile pic path herepedrotech-portfolio\public\DSC_0463.JPG
+              src="/mukunda_portfolio/public/DSC_0463.JPG" // Update your profile pic path herepedrotech-portfolio\public\DSC_0463.JPG
               alt="Mukunda Krishna Ramisetti"
               className="w-65 h-65 object-cover rounded-full mb-6" // Change to object-contain to avoid cropping
             />
@@ -76,7 +76,7 @@ export const Home = () => {
               View Projects
             </a>
             <a
-              href="/portfolio_mukunda/Mukunda_Ramisetti_Resume.pdf"  // Ensure resume.pdf is placed in public/
+              href="/mukunda_portfolio/Mukunda_Ramisetti_Resume.pdf"  // Ensure resume.pdf is placed in public/
               target="_blank"
               rel="noopener noreferrer"
               className="bg-blue-500 text-white py-3 px-6 rounded-xl font-medium shadow-lg hover:scale-105 transition-transform duration-300 hover:shadow-2xl flex items-center space-x-2"

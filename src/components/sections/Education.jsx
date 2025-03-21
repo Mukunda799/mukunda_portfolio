@@ -17,7 +17,7 @@ export const Education = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl">
         <EducationCard
           index={0}
-          logo="/portfolio_mukunda/UNTLOGO.jpg"
+          logo="/mukunda_portfolio/UNTLOGO.jpg"
           altText="UNT Logo"
           university="University of North Texas"
           degree="Masters in Artificial Intelligence"
@@ -38,7 +38,7 @@ export const Education = () => {
 
         <EducationCard
           index={1}
-          logo="/portfolio_mukunda/SCSVMV_LOGO.jpg"
+          logo="/mukunda_portfolio/SCSVMV_LOGO.jpg"
           altText="SCSVMV University Logo"
           university="SCSVMV University"
           degree="B.Tech in Computer Science"
