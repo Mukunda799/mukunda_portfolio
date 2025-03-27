@@ -23,7 +23,6 @@ export const Home = () => {
               Hi, I’m Mukunda Krishna Ramisetti
             </h1>
           </div>
-
           <section className="bg-white-100 text-white-800">
             <div className="max-w-3xl mx-auto px-6">
               <p className="text-lg mb-6">
@@ -35,11 +34,6 @@ export const Home = () => {
                 My journey in software development began at <strong>LTIMindtree</strong>, where I contributed to the development 
                 of an <strong>Airline Vacations App</strong> with loyalty points integration, improving efficiency by 40%. 
                 I worked extensively with <strong>Java, Spring Boot, REST APIs, and Angular</strong> to deliver scalable and high-performance solutions.
-              </p>
-
-              <p className="text-lg mb-6">
-                After my time at LTIMindtree, I moved to the United States to pursue a <strong>Master’s in Artificial Intelligence </strong> 
-                at the <strong>University of North Texas</strong>. During my program, I have learned GEN AI, Data Engineering solutions, and various Data Visualization tools.
               </p>
 
               <p className="text-lg mb-6">
@@ -76,14 +70,15 @@ export const Home = () => {
               View Projects
             </a>
             <a
-              href="/mukunda_portfolio/Mukunda_Ramisetti_Resume.pdf"  // Ensure resume.pdf is placed in public/
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-blue-500 text-white py-3 px-6 rounded-xl font-medium shadow-lg hover:scale-105 transition-transform duration-300 hover:shadow-2xl flex items-center space-x-2"
-            >
-              <span>Download Resume</span>
-              <FaDownload className="ml-2" />
-            </a>
+  href="https://drive.google.com/file/d/1cKw8N9hZyaXuSDGRaNoOYzkcBV91sJLq/view?usp=sharing"  // Replace with your actual Google Drive link
+  target="_blank"
+  rel="noopener noreferrer"
+  className="bg-blue-500 text-white py-3 px-6 rounded-xl font-medium shadow-lg hover:scale-105 transition-transform duration-300 hover:shadow-2xl flex items-center space-x-2"
+>
+  <span>Download Resume</span>
+  <FaDownload className="ml-2" />
+</a>
+
           </div>
 
         </div>
