@@ -6,20 +6,7 @@ export const ExperienceSection = () => {
   const [selectedExperience, setSelectedExperience] = useState(null);
 
   const experiences = [
-    {
-      company: "Tek Leaders INC",
-      logo: "/mukunda_portfolio/TekLeaders_logo.jpg", // Replace with actual logo path
-      role: "Java Developer",
-      period: "Jan 2024 - June 2024",
-      description:
-        "Worked on engineering Cycle Counting with Java 11, Oracle, and Apache Kafka, improving productivity by 10%. Integrated TMS with WMOS using REST APIs and React, reducing costs by 30%. Led teams to deliver 3+ client solutions, shortening project timelines by 15%.",
-      responsibilities: [
-        "Engineered Cycle Counting functionality using Java 11, Oracle as database and Apache Kafka leading to a 10% increase in productivity. ",
-        "Integrated the Transport Management System (TMS) with WMOS using REST APIs and React, downscaling operating expenses by 30%. ",
-        "Optimizing system performance and ensuring scalability",
-        "Led cross-functional teams to deliver 3+ client solutions, reducing project timelines by 15%.",
-      ],
-    },
+
     {
       company: "LTIMindtree",
       logo: "/mukunda_portfolio/LTIMindtree_logo.jpg", // Replace with actual logo path
