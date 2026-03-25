@@ -12,26 +12,26 @@ export const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="min-h-screen flex items-center justify-center py-20 bg-black text-white">
+    <section id="skills" className="min-h-screen flex items-center justify-center py-20 bg-black text-white px-4">
       <RevealOnScroll>
-        <div className="max-w-5xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-extrabold mb-12 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
+        <div className="max-w-6xl mx-auto px-2 sm:px-6 text-center">
+          <h2 className="text-3xl sm:text-4xl font-extrabold mb-10 sm:mb-12 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
             My Skills
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-7">
             {skillCategories.map((category, index) => (
               <div
                 key={index}
-                className="rounded-2xl p-8 shadow-xl transform transition-all hover:-translate-y-2 border border-gray-800 bg-gray-900 relative overflow-hidden"
+                className="rounded-2xl p-5 sm:p-7 shadow-xl transform transition-all hover:-translate-y-1 border border-gray-800 bg-gray-900/90 relative overflow-hidden"
               >
-                <div className="absolute top-2 left-2">{category.icon}</div>
-                <h3 className="text-2xl font-semibold mb-2 text-blue-400">{category.title}</h3>
-                <p className="text-sm text-gray-400 mb-4">{category.description}</p>
+                <div className="absolute top-4 left-4">{category.icon}</div>
+                <h3 className="text-xl sm:text-2xl font-semibold mb-2 text-blue-400 mt-6 sm:mt-5">{category.title}</h3>
+                <p className="text-xs sm:text-sm text-gray-400 mb-4">{category.description}</p>
                 <div className="flex flex-wrap justify-center gap-3">
                   {category.skills.map((skill, key) => (
                     <span
                       key={key}
-                      className="bg-gray-800 text-white py-2 px-4 rounded-lg text-sm font-medium transition shadow-md hover:bg-blue-500"
+                      className="bg-gray-800 text-white py-1.5 px-3 sm:py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-medium transition shadow-md hover:bg-blue-500"
                     >
                       {skill}
                     </span>

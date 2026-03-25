@@ -21,28 +21,28 @@ export const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="min-h-screen flex items-center justify-center py-20 bg-black text-white">
+    <section id="projects" className="min-h-screen flex items-center justify-center py-20 bg-black text-white px-4">
       <RevealOnScroll>
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-5xl font-extrabold mb-12 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent animate-pulse">
+        <div className="max-w-6xl mx-auto px-2 sm:px-6 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-10 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
             Featured Projects
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {projects.map((project, index) => (
               <div
                 key={index}
-                className="relative rounded-2xl p-8 shadow-lg border border-gray-800 bg-gray-900 overflow-hidden transition transform hover:scale-105 hover:shadow-2xl"
+                className="relative rounded-2xl p-5 sm:p-7 shadow-lg border border-gray-800 bg-gray-900 overflow-hidden transition transform hover:scale-[1.02] hover:shadow-2xl text-left"
               >
                 <div className="absolute top-4 left-4 bg-blue-500 p-3 rounded-full shadow-md">
                   <FaProjectDiagram className="text-white text-3xl" />
                 </div>
-                <h3 className="text-2xl font-semibold mt-14 text-blue-400">{project.title}</h3>
-                <p className="text-gray-400 mb-4">{project.description}</p>
-                <div className="flex flex-wrap justify-center gap-2">
+                <h3 className="text-xl sm:text-2xl font-semibold mt-14 text-blue-400">{project.title}</h3>
+                <p className="text-sm sm:text-base text-gray-400 mb-4 leading-relaxed">{project.description}</p>
+                <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech, key) => (
                     <span
                       key={key}
-                      className="bg-gray-800 text-white py-2 px-4 rounded-full text-sm font-medium hover:bg-blue-500 transition"
+                      className="bg-gray-800 text-white py-1.5 px-3 rounded-full text-xs sm:text-sm font-medium hover:bg-blue-500 transition"
                     >
                       {tech}
                     </span>
@@ -51,7 +51,9 @@ export const Projects = () => {
                 <div className="mt-6">
                   <a
                     href={project.link}
-                    className="text-xl font-semibold text-blue-400 hover:text-blue-300 transition"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-base sm:text-lg font-semibold text-blue-400 hover:text-blue-300 transition"
                   >
                     View Project →
                   </a>

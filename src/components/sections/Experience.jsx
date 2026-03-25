@@ -28,17 +28,17 @@ export const ExperienceSection = () => {
   ];
 
   return (
-    <section id="experience" className="min-h-screen py-20 bg-black text-white flex flex-col items-center justify-center">
-      <h2 className="text-5xl font-extrabold mb-12 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
+    <section id="experience" className="min-h-screen py-20 bg-black text-white flex flex-col items-center justify-center px-4">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-10 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
         Experience
       </h2>
 
       {/* Grid Layout */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 max-w-7xl w-full px-6 mx-auto justify-items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-6xl w-full px-0 sm:px-6 mx-auto justify-items-center">
         {experiences.map((exp, index) => (
           <div
             key={index}
-            className="bg-gray-900 bg-opacity-80 rounded-xl p-6 shadow-2xl cursor-pointer group relative transform transition-all duration-300 hover:scale-105 hover:border-blue-400 border-2 border-transparent hover:shadow-lg"
+            className="bg-gray-900/80 rounded-xl p-5 sm:p-6 shadow-2xl cursor-pointer group relative transform transition-all duration-300 hover:scale-[1.02] hover:border-blue-400 border border-gray-800 hover:shadow-lg w-full max-w-xl"
             onClick={() => setSelectedExperience(exp)}
           >
             {/* Company Logo */}
@@ -47,9 +47,9 @@ export const ExperienceSection = () => {
             </div>
 
             {/* Role and Company */}
-            <h3 className="text-2xl font-semibold mt-14 text-blue-400">{exp.role}</h3>
-            <h4 className="text-xl text-gray-300">{exp.company}</h4>
-            <p className="text-sm text-gray-400">{exp.period}</p>
+            <h3 className="text-xl sm:text-2xl font-semibold mt-14 text-blue-400">{exp.role}</h3>
+            <h4 className="text-lg sm:text-xl text-gray-300">{exp.company}</h4>
+            <p className="text-xs sm:text-sm text-gray-400">{exp.period}</p>
 
             {/* Description */}
             <p className="mt-4 text-gray-300 text-sm leading-relaxed">{exp.description}</p>
@@ -73,7 +73,7 @@ export const ExperienceSection = () => {
           onClose={() => setSelectedExperience(null)}
           className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 backdrop-blur-lg"
         >
-          <div className="bg-gray-900 p-8 rounded-2xl shadow-xl max-w-2xl w-full relative border border-gray-800 text-white overflow-y-auto h-auto max-h-[100vh]">
+          <div className="bg-gray-900 p-5 sm:p-8 rounded-2xl shadow-xl max-w-2xl w-[92%] sm:w-full relative border border-gray-800 text-white overflow-y-auto h-auto max-h-[92vh]">
             {/* Close Button */}
             <button
               className="absolute top-3 right-3 text-white hover:text-red-500 transition-all duration-300"

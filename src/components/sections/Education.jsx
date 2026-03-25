@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaUniversity, FaGraduationCap, FaCalendarAlt, FaStar, FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 export const Education = () => {
@@ -9,12 +9,12 @@ export const Education = () => {
   };
 
   return (
-    <section id="education" className="py-20 bg-black text-white text-center flex flex-col items-center">
-      <h2 className="text-5xl font-extrabold mb-12 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent drop-shadow-lg">
+    <section id="education" className="py-20 bg-black text-white text-center flex flex-col items-center px-4">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-10 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent drop-shadow-lg">
         Education
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl w-full">
         <EducationCard
           index={0}
           logo="/mukunda_portfolio/UNTLOGO.jpg"
@@ -65,23 +65,23 @@ const EducationCard = ({ index, logo, altText, university, degree, duration, gpa
 
   return (
     <div 
-      className={`relative flex flex-col p-6 rounded-2xl bg-gray-800 bg-opacity-80 shadow-lg border border-gray-600 transition-transform hover:scale-105 w-full cursor-pointer 
+      className={`relative flex flex-col p-5 sm:p-6 rounded-2xl bg-gray-900/80 shadow-lg border border-gray-700 transition-transform hover:scale-[1.02] w-full cursor-pointer 
       ${isOpen ? "ring-2 ring-blue-400 shadow-blue-500/30" : ""}`} 
     >
       {/* Top Section */}
-      <div className="flex items-center space-x-4">
-        <img src={logo} alt={altText} className="w-16 h-16 object-contain rounded-lg border border-gray-700 shadow-md" />
+      <div className="flex items-start space-x-3 sm:space-x-4">
+        <img src={logo} alt={altText} className="w-12 h-12 sm:w-16 sm:h-16 object-contain rounded-lg border border-gray-700 shadow-md bg-white" />
         <div className="text-left">
-          <h3 className="text-xl font-semibold text-blue-400 flex items-center">
+          <h3 className="text-base sm:text-xl font-semibold text-blue-400 flex items-center">
             <FaUniversity className="mr-2 text-cyan-400" /> {university}
           </h3>
-          <p className="text-gray-300 flex items-center">
+          <p className="text-sm sm:text-base text-gray-300 flex items-center">
             <FaGraduationCap className="mr-2 text-gray-400" /> {degree}
           </p>
-          <p className="text-gray-400 flex items-center">
+          <p className="text-xs sm:text-sm text-gray-400 flex items-center">
             <FaCalendarAlt className="mr-2" /> {duration}
           </p>
-          <p className="text-gray-300 flex items-center">
+          <p className="text-xs sm:text-sm text-gray-300 flex items-center">
             <FaStar className="mr-2 text-yellow-500" /> GPA: {gpa}
           </p>
         </div>

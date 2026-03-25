@@ -39,17 +39,17 @@ export const Contact = () => {
   return (
     <section
       id="contact"
-      className="min-h-screen flex items-center justify-center py-20 bg-black-to-r from-cyan-700 to-blue-900 text-white"
+      className="min-h-screen flex items-center justify-center py-20 px-4 bg-gradient-to-b from-black via-slate-950 to-black text-white"
     >
       <RevealOnScroll>
-        <div className="w-full max-w-lg px-8 py-10 bg-gray-900/40 backdrop-blur-lg rounded-2xl shadow-2xl border border-gray-800/30 transition-all duration-500">
+        <div className="w-full max-w-lg px-5 sm:px-8 py-8 sm:py-10 bg-gray-900/40 backdrop-blur-lg rounded-2xl shadow-2xl border border-gray-800/40 transition-all duration-500">
           {!isSubmitted ? (
             <>
-              <h2 className="text-4xl font-bold text-center mb-6 text-transparent bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text">
-                Let's Connect
+              <h2 className="text-3xl sm:text-4xl font-bold text-center mb-6 text-transparent bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text">
+                Let&apos;s Connect
               </h2>
               <p className="text-gray-300 text-center mb-6">
-                I'd love to hear from you! Fill out the form below.
+                I&apos;d love to hear from you! Fill out the form below.
               </p>
 
               <form className="space-y-6" onSubmit={handleSubmit}>
@@ -60,7 +60,7 @@ export const Contact = () => {
                     name="name"
                     required
                     value={formData.name}
-                    className="w-full bg-gray-800/40 border border-white/30 rounded-lg px-4 py-3 text-white placeholder-gray-300 transition focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                    className="w-full bg-gray-800/50 border border-white/25 rounded-lg px-4 py-3 text-white placeholder-gray-300 transition focus:outline-none focus:ring-2 focus:ring-cyan-400"
                     placeholder="Your Name"
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   />
@@ -73,7 +73,7 @@ export const Contact = () => {
                     name="email"
                     required
                     value={formData.email}
-                    className="w-full bg-gray-800/40 border border-white/30 rounded-lg px-4 py-3 text-white placeholder-gray-300 transition focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                    className="w-full bg-gray-800/50 border border-white/25 rounded-lg px-4 py-3 text-white placeholder-gray-300 transition focus:outline-none focus:ring-2 focus:ring-cyan-400"
                     placeholder="Your Email"
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   />
@@ -86,7 +86,7 @@ export const Contact = () => {
                     required
                     rows={5}
                     value={formData.message}
-                    className="w-full bg-gray-800/40 border border-white/30 rounded-lg px-4 py-3 text-white placeholder-gray-300 transition focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                    className="w-full bg-gray-800/50 border border-white/25 rounded-lg px-4 py-3 text-white placeholder-gray-300 transition focus:outline-none focus:ring-2 focus:ring-cyan-400"
                     placeholder="Your Message..."
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   />
@@ -105,7 +105,7 @@ export const Contact = () => {
               <CheckCircleIcon className="w-20 h-20 text-green-400 animate-bounce" />
               <h3 className="text-3xl font-semibold text-white">Thank You!</h3>
               <p className="text-gray-300 text-center">
-                Your message has been successfully sent. I'll get back to you soon!
+                Your message has been successfully sent. I&apos;ll get back to you soon!
               </p>
             </div>
           )}
