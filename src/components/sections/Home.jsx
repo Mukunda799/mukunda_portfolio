@@ -1,64 +1,107 @@
-import { RevealOnScroll } from "../RevealOnScroll"; 
+import { RevealOnScroll } from "../RevealOnScroll";
 import ConnectWithMe from "./ConnectWithMe";
 import { FaDownload } from "react-icons/fa";
-
 
 export const Home = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center px-4 pt-28 pb-14 bg-black"
+      className="relative min-h-screen flex items-center justify-center px-4 pt-24 pb-16 overflow-hidden"
     >
+      {/* Background ambient effects */}
+      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-indigo-600/8 blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-cyan-500/5 blur-[120px] pointer-events-none" />
+
       <RevealOnScroll>
-        <div className="text-center z-10 w-full max-w-5xl mx-auto">
-          <div className="flex flex-col items-center mb-8">
-            <img
-              src="/mukunda_portfolio/DSC_0463.JPG"
-              alt="Mukunda Krishna Ramisetti"
-              className="w-44 h-44 sm:w-56 sm:h-56 object-cover rounded-full mb-6 border-4 border-cyan-400/60 shadow-xl shadow-cyan-500/20"
-            />
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent leading-tight">
-              Hi, I&apos;m Mukunda Krishna Ramisetti
-            </h1>
-          </div>
-          <section className="text-white">
-            <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 rounded-2xl border border-white/10 bg-gradient-to-b from-slate-900/80 to-black/70 backdrop-blur-sm">
-              <p className="text-sm sm:text-base md:text-lg mb-5 text-gray-200 leading-relaxed">
-                I am a passionate <strong>Full Stack Java Developer</strong> with over two years of experience, alongside a 
-                master&apos;s and a bachelor&apos;s in Computer Science.
-              </p>
-
-              <p className="text-sm sm:text-base md:text-lg mb-5 text-gray-300 leading-relaxed">
-                My journey in software development began at <strong>LTIMindtree</strong>, where I contributed to the development 
-                of an <strong>Airline Vacations App</strong> with loyalty points integration, improving efficiency by 40%. 
-                I worked extensively with <strong>Java, Spring Boot, REST APIs, and Angular</strong> to deliver scalable and high-performance solutions.
-              </p>
-
-              <p className="text-sm sm:text-base md:text-lg mb-5 text-gray-300 leading-relaxed">
-                My expertise spans from developing robust <strong>microservices architectures</strong> to implementing secure 
-                <strong>OAuth2 and JWT authentication</strong>. I also have hands-on experience setting up <strong>CI/CD pipelines, 
-                cloud infrastructure, and DevOps automation</strong>.
-              </p>
-
-              <p className="text-sm sm:text-base md:text-lg font-semibold text-cyan-200">
-                I am now seeking a full-time position as a <strong>Software Engineer</strong>, where I can leverage my skills 
-                to drive innovation and excellence in the tech industry.
-              </p>
-
-              <p className="text-sm sm:text-base md:text-lg mt-5 text-gray-200">
-                <strong>Let’s connect</strong> and explore how we can collaborate to build impactful solutions!
-              </p>
+        <div className="relative z-10 text-center w-full max-w-4xl mx-auto">
+          {/* Profile image with animated glow ring */}
+          <div className="flex flex-col items-center mb-10">
+            <div className="relative mb-8">
+              {/* Rotating gradient ring */}
+              <div className="absolute -inset-2 rounded-full animate-spin-slow bg-gradient-to-r from-indigo-500 via-cyan-400 to-purple-500 opacity-60 blur-sm" />
+              <div className="absolute -inset-2 rounded-full animate-spin-slow bg-gradient-to-r from-indigo-500 via-cyan-400 to-purple-500 opacity-30" />
+              <img
+                src="/mukunda_portfolio/DSC_0463.JPG"
+                alt="Mukunda Krishna Ramisetti"
+                className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 object-cover rounded-full border-[3px] border-[#050508] shadow-2xl"
+              />
             </div>
-          </section>
 
-          <div className="mt-7">
+            {/* Name */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-3">
+              <span className="text-white">Hi, I&apos;m </span>
+              <span className="gradient-text">Mukunda Krishna</span>
+            </h1>
+            <p className="text-base sm:text-lg text-white/50 font-medium tracking-wide">
+              Full Stack Java Developer • Software Engineer
+            </p>
+          </div>
+
+          {/* Bio card */}
+          <div className="glass-card p-6 sm:p-8 md:p-10 text-left max-w-3xl mx-auto mb-8">
+            <p className="text-sm sm:text-base text-white/70 leading-relaxed mb-4">
+              I am a passionate{" "}
+              <span className="text-indigo-300 font-semibold">
+                Full Stack Java Developer
+              </span>{" "}
+              with over two years of experience, alongside a master&apos;s and a
+              bachelor&apos;s in Computer Science.
+            </p>
+
+            <p className="text-sm sm:text-base text-white/60 leading-relaxed mb-4">
+              My journey in software development began at{" "}
+              <span className="text-white/90 font-semibold">LTIMindtree</span>,
+              where I contributed to the development of an{" "}
+              <span className="text-cyan-300/90 font-medium">
+                Airline Vacations App
+              </span>{" "}
+              with loyalty points integration, improving efficiency by 40%. I
+              worked extensively with{" "}
+              <span className="text-white/80">
+                Java, Spring Boot, REST APIs, and Angular
+              </span>{" "}
+              to deliver scalable and high-performance solutions.
+            </p>
+
+            <p className="text-sm sm:text-base text-white/60 leading-relaxed mb-4">
+              My expertise spans from developing robust{" "}
+              <span className="text-white/80">microservices architectures</span>{" "}
+              to implementing secure{" "}
+              <span className="text-white/80">
+                OAuth2 and JWT authentication
+              </span>
+              . I also have hands-on experience setting up{" "}
+              <span className="text-white/80">
+                CI/CD pipelines, cloud infrastructure, and DevOps automation
+              </span>
+              .
+            </p>
+
+            <p className="text-sm sm:text-base text-indigo-300/80 font-medium leading-relaxed">
+              I am now seeking a full-time position as a{" "}
+              <span className="text-white font-semibold">
+                Software Engineer
+              </span>
+              , where I can leverage my skills to drive innovation and
+              excellence.
+            </p>
+
+            <p className="text-sm sm:text-base text-white/50 mt-4">
+              <strong className="text-white/70">Let&apos;s connect</strong> and
+              explore how we can collaborate to build impactful solutions!
+            </p>
+          </div>
+
+          {/* Connect links */}
+          <div className="mb-8">
             <ConnectWithMe />
           </div>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-7">
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a
               href="#projects"
-              className="bg-blue-500 text-white py-3 px-6 rounded-xl font-medium shadow-lg hover:scale-105 transition-transform duration-300 hover:shadow-2xl"
+              className="glow-btn inline-flex items-center justify-center bg-gradient-to-r from-indigo-600 to-indigo-500 text-white py-3.5 px-8 rounded-xl font-semibold text-sm sm:text-base shadow-lg shadow-indigo-500/25"
             >
               View Projects
             </a>
@@ -66,10 +109,10 @@ export const Home = () => {
               href="https://drive.google.com/file/d/1cKw8N9hZyaXuSDGRaNoOYzkcBV91sJLq/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-slate-800 border border-cyan-400/40 text-white py-3 px-6 rounded-xl font-medium shadow-lg hover:scale-105 transition-transform duration-300 hover:shadow-2xl flex items-center justify-center"
+              className="glow-btn inline-flex items-center justify-center bg-white/[0.04] border border-white/10 text-white py-3.5 px-8 rounded-xl font-semibold text-sm sm:text-base hover:border-indigo-500/40"
             >
               <span>Download Resume</span>
-              <FaDownload className="ml-2" />
+              <FaDownload className="ml-2.5 text-indigo-400" />
             </a>
           </div>
         </div>

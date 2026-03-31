@@ -1,63 +1,108 @@
 import { RevealOnScroll } from "../RevealOnScroll";
-import { FaProjectDiagram } from "react-icons/fa";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 export const Projects = () => {
   const projects = [
     {
       title: "Automated Testing of E-Commerce Platforms",
       description:
-        "Developed automated test suites for Amazon, UrbanLadder, and Lenskart using Selenium, TestNG, and BDD frameworks to ensure a seamless user experience. Automated 25+ critical test cases per platform, reducing manual efforts and enhancing test efficiency. ",
-      technologies: ["Selenium", "TestNG", "Cucumber", "Serenity BDD", "Java", "JUnit", "Maven", "Gradle", "Jenkins", "GitHub Actions", "Postman", "RestAssured", "JIRA", "TestRail"],
+        "Developed automated test suites for Amazon, UrbanLadder, and Lenskart using Selenium, TestNG, and BDD frameworks to ensure a seamless user experience. Automated 25+ critical test cases per platform, reducing manual efforts and enhancing test efficiency.",
+      technologies: [
+        "Selenium",
+        "TestNG",
+        "Cucumber",
+        "Serenity BDD",
+        "Java",
+        "JUnit",
+        "Maven",
+        "Gradle",
+        "Jenkins",
+        "GitHub Actions",
+        "Postman",
+        "RestAssured",
+        "JIRA",
+        "TestRail",
+      ],
       link: "https://github.com/Mukunda799/Com-mukunda",
+      accent: "from-indigo-500 to-cyan-500",
     },
     {
       title: "Hotel Booking Management",
       description:
-        "I have developed a Hotel Management Program in Java that lets users book rooms, check available rooms, delete customer records, and search for rooms by customer name. It also saves and loads room data from files and displays rooms in alphabetical order.",
-      technologies: ["Java", "Arrays", "File I/O", "BufferedReader", "PrintWriter", "Scanner", "Eclipse", "Postgre SQL", "Maven"],
+        "Developed a Hotel Management Program in Java that lets users book rooms, check available rooms, delete customer records, and search for rooms by customer name. It also saves and loads room data from files and displays rooms in alphabetical order.",
+      technologies: [
+        "Java",
+        "Arrays",
+        "File I/O",
+        "BufferedReader",
+        "PrintWriter",
+        "Scanner",
+        "Eclipse",
+        "PostgreSQL",
+        "Maven",
+      ],
       link: "https://github.com/Mukunda799/Java-hotel-booking-program-master",
+      accent: "from-purple-500 to-pink-500",
     },
-   
   ];
 
   return (
-    <section id="projects" className="min-h-screen flex items-center justify-center py-20 bg-black text-white px-4">
+    <section
+      id="projects"
+      className="relative py-20 sm:py-28 flex items-center justify-center text-white px-4 section-gradient"
+    >
       <RevealOnScroll>
         <div className="max-w-6xl mx-auto px-2 sm:px-6 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-10 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-12 sm:mb-16 gradient-text">
             Featured Projects
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
             {projects.map((project, index) => (
               <div
                 key={index}
-                className="relative rounded-2xl p-5 sm:p-7 shadow-lg border border-gray-800 bg-gray-900 overflow-hidden transition transform hover:scale-[1.02] hover:shadow-2xl text-left"
+                className="glass-card glass-card-hover relative overflow-hidden p-5 sm:p-7 text-left group"
               >
-                <div className="absolute top-4 left-4 bg-blue-500 p-3 rounded-full shadow-md">
-                  <FaProjectDiagram className="text-white text-3xl" />
+                {/* Gradient accent line */}
+                <div
+                  className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r ${project.accent} opacity-60 group-hover:opacity-100 transition-opacity`}
+                />
+
+                {/* Project number badge */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div
+                    className={`w-10 h-10 rounded-xl bg-gradient-to-br ${project.accent} flex items-center justify-center text-white font-bold text-sm shadow-lg`}
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </div>
+                  <h3 className="text-base sm:text-lg font-bold text-white/90 leading-snug">
+                    {project.title}
+                  </h3>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-semibold mt-14 text-blue-400">{project.title}</h3>
-                <p className="text-sm sm:text-base text-gray-400 mb-4 leading-relaxed">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
+
+                <p className="text-sm text-white/50 mb-5 leading-relaxed">
+                  {project.description}
+                </p>
+
+                {/* Tech tags */}
+                <div className="flex flex-wrap gap-2 mb-5">
                   {project.technologies.map((tech, key) => (
-                    <span
-                      key={key}
-                      className="bg-gray-800 text-white py-1.5 px-3 rounded-full text-xs sm:text-sm font-medium hover:bg-blue-500 transition"
-                    >
+                    <span key={key} className="skill-badge text-xs">
                       {tech}
                     </span>
                   ))}
                 </div>
-                <div className="mt-6">
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-base sm:text-lg font-semibold text-blue-400 hover:text-blue-300 transition"
-                  >
-                    View Project →
-                  </a>
-                </div>
+
+                {/* Link */}
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors duration-300 group/link"
+                >
+                  View on GitHub
+                  <FaExternalLinkAlt className="text-xs transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                </a>
               </div>
             ))}
           </div>
