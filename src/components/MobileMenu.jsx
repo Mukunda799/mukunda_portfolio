@@ -18,7 +18,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
     >
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-[#050508]/95 backdrop-blur-2xl"
+        className="absolute inset-0 bg-[#050508]/95 md:backdrop-blur-2xl"
         onClick={() => setMenuOpen(false)}
       />
 
