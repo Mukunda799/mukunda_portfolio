@@ -20,7 +20,7 @@ function App() {
     <>
       {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)} />}
       <div
-        className={`min-h-screen transition-opacity duration-700 ${
+        className={`min-h-screen transition-opacity duration-500 ${
           isLoaded ? "opacity-100" : "opacity-0"
         } bg-[#050508] text-gray-100`}
       >

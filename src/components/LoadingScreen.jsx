@@ -14,45 +14,46 @@ export const LoadingScreen = ({ onComplete }) => {
 
       if (index > fullText.length) {
         clearInterval(interval);
-        setTimeout(() => {
-          onComplete();
-          document.body.classList.add("loaded");
-        }, 800);
+        setTimeout(() => onComplete(), 400);
       }
-    }, 80);
+    }, 50); // Faster typing speed
 
-    return () => clearInterval(interval);
+    // Safety: force complete after 3 seconds no matter what
+    const safety = setTimeout(() => {
+      clearInterval(interval);
+      onComplete();
+    }, 3000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(safety);
+    };
   }, [onComplete]);
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#050508]">
       {/* Ambient glow */}
-      <div className="absolute w-[400px] h-[400px] rounded-full bg-indigo-500/10 blur-[120px] pointer-events-none" />
+      <div className="absolute w-[300px] h-[300px] rounded-full bg-indigo-500/10 blur-[100px] pointer-events-none" />
 
       {/* Typing text */}
-      <div className="relative mb-8">
-        <p className="text-2xl sm:text-4xl font-mono font-bold text-white tracking-tight">
+      <div className="relative mb-8 px-4">
+        <p className="text-lg sm:text-2xl md:text-4xl font-mono font-bold text-white tracking-tight text-center">
           {text}
           <span className="animate-blink ml-0.5 text-indigo-400">|</span>
         </p>
       </div>
 
       {/* Progress bar */}
-      <div className="w-52 sm:w-64 h-1 bg-white/5 rounded-full overflow-hidden relative">
+      <div className="w-40 sm:w-52 h-1 bg-white/5 rounded-full overflow-hidden">
         <div
-          className="h-full rounded-full transition-all duration-200 ease-out"
+          className="h-full rounded-full transition-all duration-150 ease-out"
           style={{
             width: `${progress}%`,
             background: "linear-gradient(90deg, #6366f1, #06b6d4)",
-            boxShadow: "0 0 20px rgba(99,102,241,0.6)",
+            boxShadow: "0 0 15px rgba(99,102,241,0.5)",
           }}
         />
       </div>
-
-      {/* Tagline */}
-      <p className="mt-6 text-xs text-white/30 tracking-widest uppercase">
-        Loading experience...
-      </p>
     </div>
   );
 };

@@ -16,12 +16,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  overflow: hidden;
-}
-body.loaded {
-  overflow: auto;
-}
+/* overflow is managed by React, not CSS */
 
 /* ─── Selection ─── */
 ::selection {
