@@ -1,85 +1,89 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { navLinks } from "../data";
 
-export const Navbar = ({ menuOpen, setMenuOpen }) => {
+const SunIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="5" />
+    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+  </svg>
+);
+
+const MoonIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+  </svg>
+);
+
+export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("theme");
+      if (saved) return saved;
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    return "dark";
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
   }, [menuOpen]);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const links = [
-    { href: "#home", label: "Home" },
-    { href: "#education", label: "Education" },
-    { href: "#skills", label: "Skills" },
-    { href: "#experience", label: "Experience" },
-    { href: "#projects", label: "Projects" },
-    { href: "#contact", label: "Contact" },
-  ];
-
   return (
-    <nav
-      className={`fixed top-0 w-full z-40 transition-all duration-500 ${
-        scrolled
-          ? "bg-[#050508]/90 md:bg-[#050508]/80 md:backdrop-blur-xl border-b border-white/[0.06] shadow-lg shadow-black/20"
-          : "bg-transparent border-b border-transparent"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center h-16 sm:h-18">
-          {/* Logo */}
-          <a
-            href="#home"
-            className="font-bold text-lg sm:text-xl tracking-tight"
-          >
-            <span className="text-white">mukunda</span>
-            <span className="gradient-text font-extrabold">.dev</span>
-          </a>
+    <nav className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
+      <div className="container navbar__inner">
+        <a href="#home" className="navbar__logo">
+          mukunda<span>.dev</span>
+        </a>
 
-          {/* Mobile hamburger */}
-          <button
-            className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition-colors"
-            onClick={() => setMenuOpen((prev) => !prev)}
-            aria-label="Toggle navigation menu"
-          >
-            <div className="flex flex-col gap-[5px]">
-              <span
-                className={`block w-5 h-[2px] bg-white rounded-full transition-all duration-300 origin-center ${
-                  menuOpen ? "rotate-45 translate-y-[7px]" : ""
-                }`}
-              />
-              <span
-                className={`block w-5 h-[2px] bg-white rounded-full transition-all duration-300 ${
-                  menuOpen ? "opacity-0 scale-0" : ""
-                }`}
-              />
-              <span
-                className={`block w-5 h-[2px] bg-white rounded-full transition-all duration-300 origin-center ${
-                  menuOpen ? "-rotate-45 -translate-y-[7px]" : ""
-                }`}
-              />
-            </div>
-          </button>
-
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-1">
-            {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="relative px-4 py-2 text-sm text-white/60 hover:text-white transition-colors duration-300 rounded-lg hover:bg-white/[0.04] group"
-              >
-                {link.label}
-                <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-0 group-hover:w-5 h-[2px] bg-indigo-400 rounded-full transition-all duration-300" />
-              </a>
+        <div className="navbar__right">
+          <div className="navbar__links">
+            {navLinks.map((l) => (
+              <a key={l.href} href={l.href} className="navbar__link">{l.label}</a>
             ))}
           </div>
+
+          <button
+            onClick={() => setTheme((t) => (t === "dark" ? "light" : "dark"))}
+            className="navbar__theme-toggle"
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+          </button>
+
+          <button
+            className={`navbar__hamburger ${menuOpen ? "active" : ""}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span /><span /><span />
+          </button>
         </div>
+      </div>
+
+      <div className={`mobile-menu ${menuOpen ? "mobile-menu--open" : ""}`}>
+        {navLinks.map((l) => (
+          <a
+            key={l.href}
+            href={l.href}
+            className="mobile-menu__link"
+            onClick={() => setMenuOpen(false)}
+          >
+            {l.label}
+          </a>
+        ))}
       </div>
     </nav>
   );
