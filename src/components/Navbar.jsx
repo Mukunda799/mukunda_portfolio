@@ -26,7 +26,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
     <nav
       className={`fixed top-0 w-full z-40 transition-all duration-500 ${
         scrolled
-          ? "bg-[#050508]/80 backdrop-blur-xl border-b border-white/[0.06] shadow-lg shadow-black/20"
+          ? "bg-[#050508]/90 md:bg-[#050508]/80 md:backdrop-blur-xl border-b border-white/[0.06] shadow-lg shadow-black/20"
           : "bg-transparent border-b border-transparent"
       }`}
     >

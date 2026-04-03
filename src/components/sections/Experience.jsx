@@ -95,7 +95,7 @@ export const ExperienceSection = () => {
         >
           {/* Overlay */}
           <div
-            className="fixed inset-0 bg-black/70 backdrop-blur-lg"
+            className="fixed inset-0 bg-black/70 sm:backdrop-blur-lg"
             onClick={() => setSelectedExperience(null)}
           />
 
