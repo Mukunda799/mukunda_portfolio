@@ -21,8 +21,10 @@ export const Home = () => {
               <div className="absolute -inset-2 rounded-full animate-spin-slow bg-gradient-to-r from-indigo-500 via-cyan-400 to-purple-500 opacity-60 blur-sm" />
               <div className="absolute -inset-2 rounded-full animate-spin-slow bg-gradient-to-r from-indigo-500 via-cyan-400 to-purple-500 opacity-30" />
               <img
-                src="/mukunda_portfolio/DSC_0463.JPG"
+                src="/mukunda_portfolio/DSC_0463_optimized.jpg"
                 alt="Mukunda Krishna Ramisetti"
+                fetchpriority="high"
+                decoding="async"
                 className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 object-cover rounded-full border-[3px] border-[#050508] shadow-2xl"
               />
             </div>

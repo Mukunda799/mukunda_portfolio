@@ -101,6 +101,7 @@ const EducationCard = ({
           <img
             src={logo}
             alt={altText}
+            loading="lazy"
             className="w-full h-full object-contain"
           />
         </div>

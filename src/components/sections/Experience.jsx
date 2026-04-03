@@ -51,6 +51,7 @@ export const ExperienceSection = () => {
                 <img
                   src={exp.logo}
                   alt={`${exp.company} logo`}
+                  loading="lazy"
                   className="w-full h-full object-contain"
                 />
               </div>
