@@ -15,9 +15,9 @@ export const Badge = ({ children, variant = "default", className = "" }) => {
   return (
     <span
       className={`
-        inline-block px-3 py-1.5 rounded-lg text-xs font-medium
+        inline-block px-3 py-1.5 rounded-lg text-xs font-semibold
         transition-all duration-300 cursor-default
-        hover:-translate-y-0.5
+        hover:-translate-y-1 hover:scale-105
         ${variants[variant]}
         ${className}
       `}

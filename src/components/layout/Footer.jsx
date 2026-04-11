@@ -23,10 +23,7 @@ export const Footer = () => {
             className="text-sm font-bold hover:opacity-80 transition-opacity"
             style={{ color: "var(--text-primary)" }}
           >
-            mukunda
-            <span className="text-[rgb(var(--accent-rgb))] font-extrabold">
-              .dev
-            </span>
+            <span className="text-[rgb(var(--accent-rgb))] font-extrabold text-lg">MK</span>
           </a>
 
           {/* Social links */}

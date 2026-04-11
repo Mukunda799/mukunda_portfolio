@@ -43,8 +43,7 @@ export const Navbar = () => {
           className="text-lg font-bold tracking-tight hover:opacity-80 transition-opacity"
           style={{ color: "var(--text-primary)" }}
         >
-          mukunda
-          <span className="text-[rgb(var(--accent-rgb))] font-extrabold">.dev</span>
+          <span className="text-[rgb(var(--accent-rgb))] font-extrabold text-xl">MK</span>
         </a>
 
         {/* Right side */}

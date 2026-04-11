@@ -1,172 +1,265 @@
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { personalInfo, socialLinks } from "../../data";
 import { iconMap, DownloadIcon } from "../icons/Icons";
-import { Button } from "../ui/Button";
-import { AnimatedSection } from "../ui/AnimatedSection";
+import { useTheme } from "../../context/ThemeContext";
 
-const FloatingOrb = ({ className }) => (
-  <div
-    className={`absolute rounded-full pointer-events-none blur-3xl opacity-30 dark:opacity-20 ${className}`}
-  />
-);
+/* ──────────────────────────────────────────────
+   Particle / Network Canvas Background
+   ────────────────────────────────────────────── */
+const ParticleCanvas = ({ isDark }) => {
+  const canvasRef = useRef(null);
 
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    let animId;
+    let particles = [];
+    let cubes = [];
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth * window.devicePixelRatio;
+      canvas.height = canvas.offsetHeight * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    const W = () => canvas.offsetWidth;
+    const H = () => canvas.offsetHeight;
+
+    // Theme-based colors
+    // Light mode uses deep blue, dark mode uses sky blue
+    const particleRGB = isDark ? "56, 189, 248" : "37, 99, 235";
+
+    // Particles
+    const PARTICLE_COUNT = Math.min(80, Math.floor((W() * H()) / 12000));
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: Math.random() * W(),
+        y: Math.random() * H(),
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        r: Math.random() * 2 + 0.5,
+        opacity: Math.random() * 0.5 + 0.2,
+      });
+    }
+
+    // Floating cubes
+    const CUBE_COUNT = 12;
+    for (let i = 0; i < CUBE_COUNT; i++) {
+      cubes.push({
+        x: Math.random() * W(),
+        y: Math.random() * H(),
+        size: Math.random() * 20 + 10,
+        rotation: Math.random() * Math.PI * 2,
+        rotSpeed: (Math.random() - 0.5) * 0.01,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        opacity: Math.random() * 0.15 + 0.05,
+      });
+    }
+
+    const drawCube = (cube) => {
+      ctx.save();
+      ctx.translate(cube.x, cube.y);
+      ctx.rotate(cube.rotation);
+      const s = cube.size;
+
+      // Front face
+      ctx.fillStyle = `rgba(${particleRGB}, ${cube.opacity})`;
+      ctx.fillRect(-s / 2, -s / 2, s, s);
+
+      // Top face (parallelogram)
+      ctx.fillStyle = `rgba(${particleRGB}, ${cube.opacity * 1.4})`;
+      ctx.beginPath();
+      ctx.moveTo(-s / 2, -s / 2);
+      ctx.lineTo(-s / 2 + s * 0.3, -s / 2 - s * 0.3);
+      ctx.lineTo(s / 2 + s * 0.3, -s / 2 - s * 0.3);
+      ctx.lineTo(s / 2, -s / 2);
+      ctx.closePath();
+      ctx.fill();
+
+      // Right face
+      ctx.fillStyle = `rgba(${particleRGB}, ${cube.opacity * 0.7})`;
+      ctx.beginPath();
+      ctx.moveTo(s / 2, -s / 2);
+      ctx.lineTo(s / 2 + s * 0.3, -s / 2 - s * 0.3);
+      ctx.lineTo(s / 2 + s * 0.3, s / 2 - s * 0.3);
+      ctx.lineTo(s / 2, s / 2);
+      ctx.closePath();
+      ctx.fill();
+
+      // Edges
+      ctx.strokeStyle = `rgba(${particleRGB}, ${cube.opacity * 2})`;
+      ctx.lineWidth = 0.5;
+      ctx.strokeRect(-s / 2, -s / 2, s, s);
+
+      ctx.restore();
+    };
+
+    const animate = () => {
+      const w = W();
+      const h = H();
+      ctx.clearRect(0, 0, w, h);
+
+      // Update & draw particles
+      particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = w;
+        if (p.x > w) p.x = 0;
+        if (p.y < 0) p.y = h;
+        if (p.y > h) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${particleRGB}, ${p.opacity * 0.8})`;
+        ctx.fill();
+      });
+
+      // Draw connections
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            // Dynamic line opacity based on distance and theme
+            const maxLineOpacity = isDark ? 0.15 : 0.08;
+            ctx.strokeStyle = `rgba(${particleRGB}, ${maxLineOpacity * (1 - dist / 150)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Update & draw cubes
+      cubes.forEach((c) => {
+        c.x += c.vx;
+        c.y += c.vy;
+        c.rotation += c.rotSpeed;
+        if (c.x < -50) c.x = w + 50;
+        if (c.x > w + 50) c.x = -50;
+        if (c.y < -50) c.y = h + 50;
+        if (c.y > h + 50) c.y = -50;
+        drawCube(c);
+      });
+
+      animId = requestAnimationFrame(animate);
+    };
+    animate();
+
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener("resize", resize);
+    };
+  }, [isDark]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      style={{ zIndex: 0 }}
+    />
+  );
+};
+
+/* ──────────────────────────────────────────────
+   Hero Section
+   ────────────────────────────────────────────── */
 export const Hero = () => {
+  const { isDark } = useTheme();
+  const nameParts = personalInfo.name.split(" ");
+  const firstName = nameParts.length > 2 ? nameParts.slice(0, 2).join(" ") : nameParts[0];
+  const lastName = nameParts.length > 2 ? nameParts.slice(2).join(" ") : nameParts.slice(1).join(" ");
+
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16 px-5"
+      className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Animated Background Orbs */}
-      <FloatingOrb
-        className="w-[400px] h-[400px] -top-[10%] left-[20%] bg-indigo-400/30 dark:bg-indigo-500/20"
-        style={{ animation: "orb-float-1 12s ease-in-out infinite" }}
-      />
-      <FloatingOrb
-        className="w-[350px] h-[350px] top-[40%] right-[10%] bg-cyan-400/20 dark:bg-cyan-500/15"
-        style={{ animation: "orb-float-2 15s ease-in-out infinite" }}
-      />
-      <FloatingOrb
-        className="w-[250px] h-[250px] bottom-[10%] left-[10%] bg-violet-400/20 dark:bg-violet-500/15"
-        style={{ animation: "orb-float-1 18s ease-in-out infinite reverse" }}
-      />
+      {/* Animated particle background respects theme */}
+      <ParticleCanvas isDark={isDark} />
 
-      {/* Grid pattern overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
-          backgroundSize: "40px 40px",
-        }}
-      />
+      {/* Radial gradient overlays */}
+      <div className="hero-gradient-overlay" />
 
-      <div className="relative z-10 max-w-2xl mx-auto text-center">
-        {/* Profile Image */}
-        <AnimatedSection delay={0.1}>
-          <motion.div
-            className="relative mx-auto mb-8 w-fit"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            {/* Animated ring */}
-            <div
-              className="absolute -inset-1.5 rounded-full opacity-60 animate-spin-slow"
-              style={{
-                background:
-                  "conic-gradient(from 0deg, #818cf8, #06b6d4, #a78bfa, #818cf8)",
-              }}
-            />
-            <div
-              className="absolute -inset-1.5 rounded-full blur-md opacity-40 animate-spin-slow"
-              style={{
-                background:
-                  "conic-gradient(from 0deg, #818cf8, #06b6d4, #a78bfa, #818cf8)",
-              }}
-            />
-            <img
-              src={personalInfo.profileImage}
-              alt={personalInfo.fullName}
-              fetchpriority="high"
-              decoding="async"
-              className="relative w-36 h-36 rounded-full object-cover border-4"
-              style={{
-                borderColor: "var(--bg-primary)",
-              }}
-            />
-          </motion.div>
-        </AnimatedSection>
-
+      {/* Content */}
+      <div className="relative z-10 max-w-3xl mx-auto text-center px-5">
         {/* Name */}
-        <AnimatedSection delay={0.2}>
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3 leading-tight">
-            <span style={{ color: "var(--text-primary)" }}>Hi, I&apos;m </span>
-            <span className="gradient-text">{personalInfo.name}</span>
-          </h1>
-        </AnimatedSection>
+        <motion.h1
+          className="hero-name"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <span className="hero-name-first">{firstName}</span>
+          <br />
+          <span className="hero-name-last">{lastName}</span>
+        </motion.h1>
 
         {/* Title */}
-        <AnimatedSection delay={0.3}>
-          <p
-            className="text-base md:text-lg font-medium mb-8"
-            style={{ color: "var(--text-muted)" }}
-          >
-            {personalInfo.title}
-          </p>
-        </AnimatedSection>
-
-        {/* Bio Card */}
-        <AnimatedSection delay={0.4}>
-          <div
-            className="glass-card rounded-2xl p-6 md:p-7 mb-8 text-left shadow-sm"
-          >
-            {personalInfo.bio.map((p, i) => (
-              <p
-                key={i}
-                className={`text-sm leading-7 mb-2.5 last:mb-0 ${
-                  i === personalInfo.bio.length - 1
-                    ? "text-[rgb(var(--accent-rgb))] font-medium"
-                    : ""
-                }`}
-                style={
-                  i !== personalInfo.bio.length - 1
-                    ? { color: "var(--text-secondary)" }
-                    : {}
-                }
-              >
-                {p}
-              </p>
-            ))}
-          </div>
-        </AnimatedSection>
-
-        {/* Social Links */}
-        <AnimatedSection delay={0.5}>
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
-            {socialLinks.map((link) => {
-              const IconComponent = iconMap[link.icon];
-              return (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={link.name}
-                  className="
-                    glass-card flex items-center gap-2.5
-                    px-5 py-2.5 rounded-xl
-                    text-sm font-medium
-                    transition-all duration-300
-                    text-[var(--text-secondary)]
-                    hover:text-[rgb(var(--accent-rgb))]
-                    hover:border-[rgb(var(--accent-rgb)/0.4)]
-                    hover:-translate-y-0.5
-                    hover:shadow-[0_4px_16px_rgb(var(--accent-rgb)/0.12)]
-                  "
-                >
-                  {IconComponent && <IconComponent size={18} />}
-                  <span className="hidden sm:inline">{link.name}</span>
-                </a>
-              );
-            })}
-          </div>
-        </AnimatedSection>
+        <motion.p
+          className="hero-subtitle mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
+          {personalInfo.title}
+        </motion.p>
 
         {/* CTA Buttons */}
-        <AnimatedSection delay={0.6}>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Button href="#projects" variant="primary">
-              View Projects
-            </Button>
-            <Button
-              href={personalInfo.resumeUrl}
-              variant="outline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Download Resume <DownloadIcon />
-            </Button>
-          </div>
-        </AnimatedSection>
+        <motion.div
+          className="hero-buttons"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
+        >
+          <a href="#projects" className="hero-btn hero-btn-primary">
+            View Projects
+          </a>
+          <a href="#contact" className="hero-btn hero-btn-outline">
+            Get In Touch
+          </a>
+          <a
+            href={personalInfo.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero-btn hero-btn-download"
+          >
+            <DownloadIcon size={14} />
+            Download Resume
+          </a>
+        </motion.div>
+
+        {/* Social Icons */}
+        <motion.div
+          className="hero-socials"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.9 }}
+        >
+          {socialLinks.map((link) => {
+            const IconComponent = iconMap[link.icon];
+            return (
+              <a
+                key={link.name}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={link.name}
+                className="hero-social-icon"
+              >
+                {IconComponent && <IconComponent size={20} />}
+              </a>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );

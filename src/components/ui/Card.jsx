@@ -15,7 +15,7 @@ export const Card = ({
         glass-card rounded-2xl ${padding}
         shadow-sm
         transition-all duration-300
-        ${hover ? "hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(var(--accent-rgb)/0.08)]" : ""}
+        ${hover ? "hover:-translate-y-2 hover:scale-[1.01] hover:shadow-[0_12px_40px_rgb(var(--accent-rgb)/0.12)] hover:border-[rgb(var(--accent-rgb)/0.3)]" : ""}
         ${className}
       `}
       {...props}
