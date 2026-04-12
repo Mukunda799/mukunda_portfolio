@@ -31,7 +31,7 @@ export const Navbar = () => {
     <nav
       id="navbar"
       className={`
-        fixed top-0 left-0 right-0 z-50 h-16
+        fixed top-0 left-0 right-0 z-[100] h-16
         transition-all duration-300
         ${scrolled ? "glass-nav shadow-lg shadow-black/5" : "border-b border-transparent"}
       `}
@@ -143,10 +143,13 @@ export const Navbar = () => {
             transition={{ duration: 0.25 }}
             className="
               fixed top-16 left-0 right-0 bottom-0
-              flex flex-col items-center justify-center gap-2
-              md:hidden z-[99]
+              flex flex-col items-center justify-start py-10 gap-2
+              md:hidden z-[101] overflow-y-auto
             "
-            style={{ background: "var(--bg-primary)" }}
+            style={{ 
+              backgroundColor: "var(--bg-primary)",
+              backdropFilter: "blur(10px)"
+            }}
           >
             {navLinks.map((link, i) => (
               <motion.a

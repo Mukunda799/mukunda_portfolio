@@ -3,7 +3,7 @@
 // ============================================
 
 export const personalInfo = {
-  name: "Mukunda Krishna",
+  name: "Mukunda Krishna Ramisetti",
   fullName: "Mukunda Krishna Ramisetti",
   title: "Full Stack Java Developer • Software Engineer",
   profileImage: "/mukunda_portfolio/DSC_0463_optimized.jpg",
