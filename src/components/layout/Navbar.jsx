@@ -28,14 +28,15 @@ export const Navbar = () => {
   }, [menuOpen]);
 
   return (
-    <nav
-      id="navbar"
-      className={`
-        fixed top-0 left-0 right-0 z-[100] h-16
-        transition-all duration-300
-        ${scrolled ? "glass-nav shadow-lg shadow-black/5" : "border-b border-transparent"}
-      `}
-    >
+    <>
+      <nav
+        id="navbar"
+        className={`
+          fixed top-0 left-0 right-0 z-[102] h-16
+          transition-all duration-300
+          ${scrolled ? "glass-nav shadow-lg shadow-black/5" : "border-b border-transparent"}
+        `}
+      >
       <div className="w-full max-w-6xl mx-auto px-5 h-full flex items-center justify-between">
         {/* Logo */}
         <a
@@ -105,7 +106,7 @@ export const Navbar = () => {
             className="
               flex md:hidden flex-col justify-center items-center
               w-10 h-10 gap-[5px] rounded-lg ml-1
-              transition-all duration-300
+              transition-all duration-300 relative z-[102]
               hover:bg-[rgb(var(--accent-rgb)/0.08)]
             "
             onClick={() => setMenuOpen(!menuOpen)}
@@ -132,23 +133,38 @@ export const Navbar = () => {
           </button>
         </div>
       </div>
+    </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[100] md:hidden"
+            onClick={() => setMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Mobile Menu Sidebar */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
             className="
-              fixed top-16 left-0 right-0 bottom-0
-              flex flex-col items-center justify-start py-10 gap-2
-              md:hidden z-[101] overflow-y-auto
+              fixed top-0 right-0 bottom-0 w-64 shadow-2xl
+              flex flex-col items-center justify-start py-20 gap-4
+              md:hidden z-[101] overflow-y-auto border-l
             "
             style={{ 
               backgroundColor: "var(--bg-primary)",
-              backdropFilter: "blur(10px)"
+              borderColor: "var(--border-color)"
             }}
           >
             {navLinks.map((link, i) => (
@@ -176,6 +192,6 @@ export const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 };

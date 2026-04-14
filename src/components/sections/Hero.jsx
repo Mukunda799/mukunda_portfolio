@@ -174,14 +174,16 @@ const ParticleCanvas = ({ isDark }) => {
    ────────────────────────────────────────────── */
 export const Hero = () => {
   const { isDark } = useTheme();
-  const nameParts = personalInfo.name.split(" ");
-  const firstName = nameParts.length > 2 ? nameParts.slice(0, 2).join(" ") : nameParts[0];
-  const lastName = nameParts.length > 2 ? nameParts.slice(2).join(" ") : nameParts.slice(1).join(" ");
 
   return (
     <section
       id="home"
-      className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-16"
+      style={{
+        background: isDark 
+          ? "radial-gradient(ellipse at 50% 50%, #0f172a 0%, #020617 100%)"
+          : "radial-gradient(ellipse at 50% 50%, #ffffff 0%, #f1f5f9 100%)"
+      }}
     >
       {/* Animated particle background respects theme */}
       <ParticleCanvas isDark={isDark} />
@@ -189,76 +191,108 @@ export const Hero = () => {
       {/* Radial gradient overlays */}
       <div className="hero-gradient-overlay" />
 
+      {/* Dot Grid Layer to match example tempate */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-0 opacity-[0.15] dark:opacity-20"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='1.5' fill='currentColor'/%3E%3C/svg%3E")`,
+          backgroundSize: "32px 32px"
+        }}
+      />
+
       {/* Content */}
-      <div className="relative z-10 max-w-3xl mx-auto text-center px-5">
-        {/* Name */}
-        <motion.h1
-          className="hero-name"
-          initial={{ opacity: 0, y: 40 }}
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-5 flex flex-col items-center text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex flex-col items-center"
         >
-          <span className="hero-name-first">{firstName}</span>
-          <br />
-          <span className="hero-name-last">{lastName}</span>
-        </motion.h1>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
+            Hello,
+            <br />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[rgb(var(--accent-rgb))] to-[#0ea5e9] dark:to-[#818cf8] whitespace-nowrap">
+              Mukunda Krishna Ramisetti here!
+            </span>
+            <motion.span
+              animate={{ rotate: [0, 14, -8, 14, -4, 10, 0] }}
+              transition={{ repeat: Infinity, repeatDelay: 1.5, duration: 2 }}
+              className="inline-block origin-bottom-right ml-4"
+              style={{ transformOrigin: "bottom right" }}
+            >
+              👋
+            </motion.span>
+          </h1>
 
-        {/* Title */}
-        <motion.p
-          className="hero-subtitle mb-10"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-        >
-          {personalInfo.title}
-        </motion.p>
-
-        {/* CTA Buttons */}
-        <motion.div
-          className="hero-buttons"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-        >
-          <a href="#projects" className="hero-btn hero-btn-primary">
-            View Projects
-          </a>
-          <a href="#contact" className="hero-btn hero-btn-outline">
-            Get In Touch
-          </a>
-          <a
-            href={personalInfo.resumeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hero-btn hero-btn-download"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="space-y-6 text-[var(--text-secondary)] text-base md:text-lg lg:text-xl max-w-2xl mt-4"
           >
-            <DownloadIcon size={14} />
-            Download Resume
-          </a>
-        </motion.div>
+            <p>
+              I'm a 🚀 <span className="font-semibold text-[var(--text-primary)]">Full Stack Developer</span>{" "}
+              specializing in robust Java server-side architectures, REST APIs, and responsive frontends.
+            </p>
+            
+            <p className="font-medium text-[var(--text-primary)]">
+              All things Dev: Backend. Frontend. Cloud. <br className="md:hidden" />Yep, I do them all.
+            </p>
 
-        {/* Social Icons */}
-        <motion.div
-          className="hero-socials"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.9 }}
-        >
-          {socialLinks.map((link) => {
-            const IconComponent = iconMap[link.icon];
-            return (
-              <a
-                key={link.name}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={link.name}
-                className="hero-social-icon"
-              >
-                {IconComponent && <IconComponent size={20} />}
-              </a>
-            );
-          })}
+            <p>
+              Let's build systems that perform flawlessly, breathe innovation, and make a real impact.
+            </p>
+          </motion.div>
+
+          {/* Social Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="mt-10 flex flex-col items-center gap-4"
+          >
+            <span className="font-semibold text-[var(--text-primary)] uppercase tracking-wider text-sm">Find me online</span>
+            <div className="flex items-center gap-4">
+              {socialLinks.map((link) => {
+                const IconComponent = iconMap[link.icon];
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--text-secondary)] hover:text-[rgb(var(--accent-rgb))] hover:bg-[rgb(var(--accent-rgb)/0.1)] p-3 rounded-full transition-all duration-300 transform hover:scale-110"
+                  >
+                    {IconComponent && <IconComponent size={24} />}
+                  </a>
+                );
+              })}
+            </div>
+          </motion.div>
+
+          {/* Call to Actions */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="mt-10 flex flex-col sm:flex-row flex-wrap justify-center gap-4 w-full px-4"
+          >
+            <a
+              href={personalInfo.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 bg-[rgb(var(--accent-rgb))] text-white border border-transparent rounded-full font-bold text-sm hover:bg-[rgb(var(--accent-hover-rgb))] transition-all duration-300 shadow-lg shadow-[rgb(var(--accent-rgb)/0.3)] hover:shadow-xl hover:-translate-y-1 flex items-center justify-center min-w-[160px]"
+            >
+              <DownloadIcon size={16} className="mr-2" />
+              Download Resume
+            </a>
+            <a
+              href="mailto:mukundakrishnaramisetti04@gmail.com"
+              className="px-8 py-4 bg-[var(--bg-card)] text-[var(--text-primary)] border border-[var(--border-color)] rounded-full font-bold text-sm hover:bg-[rgb(var(--accent-rgb)/0.05)] hover:border-[rgb(var(--accent-rgb)/0.5)] transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1 flex items-center justify-center min-w-[200px]"
+            >
+              mukundakrishnaramisetti04@gmail.com
+            </a>
+          </motion.div>
         </motion.div>
       </div>
     </section>
