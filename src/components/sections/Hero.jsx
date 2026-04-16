@@ -201,23 +201,25 @@ export const Hero = () => {
       />
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-5 flex flex-col items-center text-center">
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="flex flex-col items-center"
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
             Hello,
             <br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[rgb(var(--accent-rgb))] to-[#0ea5e9] dark:to-[#818cf8] whitespace-nowrap">
-              Mukunda Krishna Ramisetti here!
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[rgb(var(--accent-rgb))] to-[#0ea5e9] dark:to-[#818cf8] break-words">
+              Mukunda Krishna{" "}
+              <br className="sm:hidden" />
+              Ramisetti here!
             </span>
             <motion.span
               animate={{ rotate: [0, 14, -8, 14, -4, 10, 0] }}
               transition={{ repeat: Infinity, repeatDelay: 1.5, duration: 2 }}
-              className="inline-block origin-bottom-right ml-4"
+              className="inline-block origin-bottom-right ml-2"
               style={{ transformOrigin: "bottom right" }}
             >
               👋
@@ -228,7 +230,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="space-y-6 text-[var(--text-secondary)] text-base md:text-lg lg:text-xl max-w-2xl mt-4"
+            className="space-y-4 text-[var(--text-secondary)] text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl mt-4 px-2"
           >
             <p>
               I'm a 🚀 <span className="font-semibold text-[var(--text-primary)]">Full Stack Developer</span>{" "}
@@ -236,7 +238,7 @@ export const Hero = () => {
             </p>
             
             <p className="font-medium text-[var(--text-primary)]">
-              All things Dev: Backend. Frontend. Cloud. <br className="md:hidden" />Yep, I do them all.
+              All things Dev: Backend. Frontend. Cloud.{" "}Yep, I do them all.
             </p>
 
             <p>
@@ -275,22 +277,22 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="mt-10 flex flex-col sm:flex-row flex-wrap justify-center gap-4 w-full px-4"
+            className="mt-10 flex flex-col sm:flex-row flex-wrap justify-center gap-3 w-full px-2"
           >
             <a
               href={personalInfo.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 bg-[rgb(var(--accent-rgb))] text-white border border-transparent rounded-full font-bold text-sm hover:bg-[rgb(var(--accent-hover-rgb))] transition-all duration-300 shadow-lg shadow-[rgb(var(--accent-rgb)/0.3)] hover:shadow-xl hover:-translate-y-1 flex items-center justify-center min-w-[160px]"
+              className="px-6 py-3.5 bg-[rgb(var(--accent-rgb))] text-white border border-transparent rounded-full font-bold text-sm hover:bg-[rgb(var(--accent-hover-rgb))] transition-all duration-300 shadow-lg shadow-[rgb(var(--accent-rgb)/0.3)] hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2 w-full sm:w-auto"
             >
-              <DownloadIcon size={16} className="mr-2" />
+              <DownloadIcon size={16} />
               Download Resume
             </a>
             <a
               href="mailto:mukundakrishnaramisetti04@gmail.com"
-              className="px-8 py-4 bg-[var(--bg-card)] text-[var(--text-primary)] border border-[var(--border-color)] rounded-full font-bold text-sm hover:bg-[rgb(var(--accent-rgb)/0.05)] hover:border-[rgb(var(--accent-rgb)/0.5)] transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1 flex items-center justify-center min-w-[200px]"
+              className="px-6 py-3.5 bg-[var(--bg-card)] text-[var(--text-primary)] border border-[var(--border-color)] rounded-full font-bold text-xs sm:text-sm hover:bg-[rgb(var(--accent-rgb)/0.05)] hover:border-[rgb(var(--accent-rgb)/0.5)] transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1 flex items-center justify-center w-full sm:w-auto overflow-hidden"
             >
-              mukundakrishnaramisetti04@gmail.com
+              <span className="truncate">mukundakrishnaramisetti04@gmail.com</span>
             </a>
           </motion.div>
         </motion.div>
