@@ -233,12 +233,12 @@ export const Hero = () => {
             className="space-y-4 text-[var(--text-secondary)] text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl mt-4 px-2"
           >
             <p>
-              I'm a 🚀 <span className="font-semibold text-[var(--text-primary)]">Full Stack Developer</span>{" "}
-              specializing in robust Java server-side architectures, REST APIs, and responsive frontends.
+              I'm a 🚀 <span className="font-semibold text-[var(--text-primary)]">Full Stack Software Engineer</span>{" "}
+              with 3+ years building scalable microservices, real-time dashboards, and serverless architectures.
             </p>
             
             <p className="font-medium text-[var(--text-primary)]">
-              All things Dev: Backend. Frontend. Cloud.{" "}Yep, I do them all.
+              Java • Spring Boot • Angular • AWS — I build it all.
             </p>
 
             <p>
@@ -289,10 +289,10 @@ export const Hero = () => {
               Download Resume
             </a>
             <a
-              href="mailto:mukundakrishnaramisetti04@gmail.com"
+              href="mailto:mukundakrishnara.r@gmail.com"
               className="px-6 py-3.5 bg-[var(--bg-card)] text-[var(--text-primary)] border border-[var(--border-color)] rounded-full font-bold text-xs sm:text-sm hover:bg-[rgb(var(--accent-rgb)/0.05)] hover:border-[rgb(var(--accent-rgb)/0.5)] transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1 flex items-center justify-center w-full sm:w-auto overflow-hidden"
             >
-              <span className="truncate">mukundakrishnaramisetti04@gmail.com</span>
+              <span className="truncate">mukundakrishnara.r@gmail.com</span>
             </a>
           </motion.div>
         </motion.div>

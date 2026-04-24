@@ -55,12 +55,11 @@ export const Education = () => {
                     >
                       {edu.duration}
                     </p>
-                    <p className="text-xs mt-0.5" style={{ color: "var(--text-muted)" }}>
-                      GPA:{" "}
-                      <span className="text-[rgb(var(--accent-rgb))] font-semibold">
-                        {edu.gpa}
-                      </span>
-                    </p>
+                    {edu.location && (
+                      <p className="text-xs mt-0.5" style={{ color: "var(--text-muted)" }}>
+                        📍 {edu.location}
+                      </p>
+                    )}
                   </div>
                 </div>
 

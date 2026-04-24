@@ -49,7 +49,7 @@ export const Experience = () => {
                       className="text-xs mt-0.5"
                       style={{ color: "var(--text-muted)" }}
                     >
-                      {exp.period}
+                      {exp.period}{exp.location ? ` • ${exp.location}` : ""}
                     </p>
                   </div>
                 </div>
